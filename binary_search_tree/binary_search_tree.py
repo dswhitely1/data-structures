@@ -40,7 +40,14 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+
+        def max_helper(cur):
+            if cur.right is None:
+                return cur.value
+            cur = cur.right
+            return max_helper(cur)
+
+        return max_helper(self)
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
