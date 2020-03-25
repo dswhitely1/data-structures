@@ -12,7 +12,23 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # Create a new BST Node
+        new_node = BinarySearchTree(value)
+
+        def find_node(current_node):
+            if current_node.value > value and current_node.left is not None:
+                return find_node(current_node.left)
+            elif current_node.value < value and current_node.right is not None:
+                return find_node(current_node.right)
+            else:
+                return current_node
+
+        cur_node = find_node(self)
+        if cur_node.value > value:
+            cur_node.left = new_node
+        else:
+            cur_node.right = new_node
+
 
     # Return True if the tree contains the value
     # False if it does not
