@@ -15,25 +15,28 @@ class BinarySearchTree:
         # Create a new BST Node
         new_node = BinarySearchTree(value)
 
-        def find_node(current_node):
-            if current_node.value > value and current_node.left is not None:
-                return find_node(current_node.left)
-            elif current_node.value < value and current_node.right is not None:
-                return find_node(current_node.right)
-            else:
-                return current_node
-
-        cur_node = find_node(self)
+        cur_node = self.find_node(self, value)
         if cur_node.value > value:
             cur_node.left = new_node
         else:
             cur_node.right = new_node
 
+    def find_node(self, current_node, value):
+        if current_node.value > value and current_node.left is not None:
+            return self.find_node(current_node.left, value)
+        elif current_node.value < value and current_node.right is not None:
+            return self.find_node(current_node.right, value)
+        else:
+            return current_node
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        found_node = self.find_node(self, target)
+        if target == found_node.value:
+            return True
+        return False
+
 
     # Return the maximum value found in the tree
     def get_max(self):
