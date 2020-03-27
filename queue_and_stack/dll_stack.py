@@ -11,6 +11,9 @@ class Stack:
         # self.storage = ?
         self.storage = DoublyLinkedList()
 
+    def __len__(self):
+        return self.storage.length
+
     def push(self, value):
         self.storage.add_to_head(value)
 
@@ -19,5 +22,3 @@ class Stack:
             return
         return self.storage.remove_from_head()
 
-    def len(self):
-        return self.storage.length
